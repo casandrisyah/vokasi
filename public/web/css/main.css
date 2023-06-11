@@ -1,0 +1,38 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-area{
+    padding-top: 20px;
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    position: relative;
+    bottom: 0;
+}
+
+.text-white {
+    text-decoration: none;
+}
+
+.footer-heading{
+    font-weight: bolder;
+}
+
+.kritik-saran{
+    color: white;
+}
+
+.kritik-saran > .footer-underline{
+    font-size: 14px;
+}
