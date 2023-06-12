@@ -94,8 +94,8 @@
                             <div class="widget widget_links">
                                 <h4 class="text-white">Aktivitas Mahasiswa</h4>
                                 <ul class="text-white">
-                                    <li><a class="text-white" href="{{ route('web.activity', 'himatek') }}">HIMATEK</a></li>
                                     <li><a class="text-white" href="{{ route('web.activity', 'himatif') }}">HIMATIF</a></li>
+                                    <li><a class="text-white" href="{{ route('web.activity', 'himatek') }}">HIMATEK</a></li>
                                     <li><a class="text-white" href="{{ route('web.activity', 'himatera') }}">HIMATERA</a></li>
                                 </ul>
                             </div>
