@@ -470,7 +470,7 @@
                         <span class="menu-icon" data-kt-element="icon">
                             <i class="ki-outline ki-exit-right-corner"></i>
                         </span>
-                        <span class="menu-title">Simulasi PAK</span>
+                        <span class="menu-title">Link Pengerjaan PAK</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -565,7 +565,7 @@
                         <span class="menu-icon" data-kt-element="icon">
                             <i class="ki-outline ki-exit-right-corner"></i>
                         </span>
-                        <span class="menu-title">Simulasi PAK</span>
+                        <span class="menu-title">Link Pengerjaan PAK</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
