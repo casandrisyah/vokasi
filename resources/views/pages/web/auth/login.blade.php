@@ -49,7 +49,7 @@
                                 <label for="password" class="col-md-12 col-form-label text-md-start font-weight-bold"><b>{{ __('Password') }}</b></label>
 
                                 <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror {{ session('error') != null ? 'is-invalid' : '' }}" name="password" required autocomplete="current-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror {{ session('error') != null ? 'is-invalid' : '' }}" name="password" autocomplete="current-password">
                                     <strong class="invalid-feedback">{{ session('error') }}</strong>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
