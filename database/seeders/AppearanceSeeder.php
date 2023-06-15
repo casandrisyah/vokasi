@@ -215,6 +215,37 @@ class AppearanceSeeder extends Seeder
                     });
                 }
 
+                if ($("#category").length > 0) {
+                    if ($("#category").val() == "Pengajaran") {
+                        $("#title-input").hide();
+                        $("#year-input").show();
+                        $("#subject-input").show();
+                    } else if ($("#category").val() == "Pembimbingan") {
+                        $("#title-input").show();
+                        $("#year-input").show();
+                        $("#subject-input").hide();
+                    } else {
+                        $("#title-input").hide();
+                        $("#year-input").show();
+                        $("#subject-input").show();
+                    }
+                    $("#category").change(function() {
+                        if ($(this).val() == "Pengajaran") {
+                            $("#title-input").hide();
+                            $("#year-input").show();
+                            $("#subject-input").show();
+                        } else if ($(this).val() == "Pembimbingan") {
+                            $("#title-input").show();
+                            $("#year-input").show();
+                            $("#subject-input").hide();
+                        } else {
+                            $("#title-input").hide();
+                            $("#year-input").show();
+                            $("#subject-input").show();
+                        }
+                    });
+                }
+
                 obj_date("date_birth");
                 obj_date_time("tanggal");
                 obj_date("testing_time");

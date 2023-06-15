@@ -178,7 +178,7 @@ class WebController extends Controller
         $education = $dosen->education()->where('is_active', 1)->orderBy('created_at', 'desc')->get();
         $funding = $dosen->pendanaan()->where('is_active', 1)->orderBy('created_at', 'desc')->get();
         $research = $dosen->research()->where('is_active', 1)->orderBy('created_at', 'desc')->get();
-        $teaching_mentoring = $dosen->teaching_mentoring()->where('is_active', 1)->orderBy('created_at', 'desc')->get();
+        $teaching_mentoring = $dosen->teaching_mentoring()->with('subject')->where('is_active', 1)->orderBy('created_at', 'desc')->get();
         return view('pages.web.civitas.dosen.show', compact('dosen', 'education', 'funding', 'research', 'teaching_mentoring'));
     }
 
@@ -187,9 +187,9 @@ class WebController extends Controller
         $category = $request->category;
         $dosen = $request->dosen_id;
         if ($category == 'semua') {
-            $teaching_mentoring = TeachingMentoring::where('user_id', $dosen)->where('is_active', 1)->orderBy('created_at', 'desc')->get();
+            $teaching_mentoring = TeachingMentoring::where('user_id', $dosen)->with('subject')->where('is_active', 1)->orderBy('created_at', 'desc')->get();
         } else {
-            $teaching_mentoring = TeachingMentoring::where('user_id', $dosen)->where('is_active', 1)->where('category', $category)->orderBy('created_at', 'desc')->get();
+            $teaching_mentoring = TeachingMentoring::where('user_id', $dosen)->with('subject')->where('is_active', 1)->where('category', $category)->orderBy('created_at', 'desc')->get();
         }
 
         if ($teaching_mentoring->count() == 0) {

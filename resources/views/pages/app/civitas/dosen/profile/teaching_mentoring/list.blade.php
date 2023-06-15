@@ -7,10 +7,8 @@
                 </div>
             </th>
             <th class="min-w-125px">Kategori</th>
-            <th class="min-w-125px">Judul</th>
             <th class="min-w-125px">Nama Mahasiswa</th>
             <th class="min-w-125px">Tahun</th>
-            <th class="min-w-125px">Mata Kuliah</th>
             <th class="min-w-125px">Status</th>
             <th class="min-w-125px">Dibuat Tanggal</th>
             <th class="text-end min-w-70px">Aksi</th>
@@ -25,10 +23,8 @@
                 </div>
             </td>
             <td class="text-capitalize">{{ $item->category }}</td>
-            <td class="text-capitalize">{{ $item->title }}</td>
             <td>{!! $item->student_name !!}</td>
             <td>{{ $item->year }}</td>
-            <td>{{ $item->subject->name }}</td>
             <td>
                 @if ($item->is_active == 1)
                 <span class="badge badge-light-success py-3 px-4 fs-7">Aktif</span>

@@ -46,17 +46,17 @@
                                     <option value="Pembimbingan" {{ $data->category == 'Pembimbingan' ? 'selected' : '' }}>Pembimbingan</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="title-input">
                                 <label class="required fw-semibold fs-6 mb-2">Judul</label>
                                 <input type="text" class="form-control form-control-solid mb-3" name="title" id="title" value="{{$data->title}}">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="year-input">
                                 <label class="required fw-semibold fs-6 mb-2">Tahun</label>
                                 <input type="text" class="form-control form-control-solid number_only mb-3" name="year" id="year" value="{{$data->year}}">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="subject-input">
                                 <label class="required fw-semibold fs-6 mb-2">Mata Kuliah</label>
-                                <select name="subject_id" id="subject_id" class="form-select form-select-solid">
+                                <select name="subject_id" id="subject_id" class="form-select form-select-solid mb-3">
                                     <option disabled selected>Pilih Mata Kuliah</option>
                                     @foreach ($subjects as $subject)
                                         <option value="{{ $subject->id }}" {{ $data->subject_id == $subject->id ? 'selected' : '' }}>{{ $subject->name }}</option>
@@ -87,6 +87,37 @@
         <script>
             obj_select("category");
             obj_select("subject_id");
+
+            if ($("#category").length > 0) {
+                if ($("#category").val() == "Pengajaran") {
+                    $("#title-input").hide();
+                    $("#year-input").show();
+                    $("#subject-input").show();
+                } else if ($("#category").val() == "Pembimbingan") {
+                    $("#title-input").show();
+                    $("#year-input").show();
+                    $("#subject-input").hide();
+                } else {
+                    $("#title-input").hide();
+                    $("#year-input").show();
+                    $("#subject-input").show();
+                }
+                $("#category").change(function() {
+                    if ($(this).val() == "Pengajaran") {
+                        $("#title-input").hide();
+                        $("#year-input").show();
+                        $("#subject-input").show();
+                    } else if ($(this).val() == "Pembimbingan") {
+                        $("#title-input").show();
+                        $("#year-input").show();
+                        $("#subject-input").hide();
+                    } else {
+                        $("#title-input").hide();
+                        $("#year-input").show();
+                        $("#subject-input").show();
+                    }
+                });
+            }
         </script>
     @endsection
 </x-office-layout>

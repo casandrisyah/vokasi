@@ -31,8 +31,8 @@ class TeachingMentoringController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
-            'subject_id' => 'required',
-            'title' => 'required',
+            'subject_id' => $request->category == 'Pengajaran' ? 'required' : 'nullable',
+            'title' => $request->category == 'Pembimbingan' ? 'required' : 'nullable',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
@@ -50,7 +50,7 @@ class TeachingMentoringController extends Controller
 
         $teaching_mentoring = new TeachingMentoring;
         $teaching_mentoring->user_id = $request->user_id;
-        $teaching_mentoring->subject_id = $request->subject_id;
+        $teaching_mentoring->subject_id = $request->subject_id ?? 0;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
@@ -90,8 +90,8 @@ class TeachingMentoringController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'category' => 'required',
-            'subject_id' => 'required',
-            'title' => 'required',
+            'subject_id' => $request->category == 'Pengajaran' ? 'required' : 'nullable',
+            'title' => $request->category == 'Pembimbingan' ? 'required' : 'nullable',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
@@ -108,7 +108,7 @@ class TeachingMentoringController extends Controller
         }
 
         $teaching_mentoring->user_id = $request->user_id;
-        $teaching_mentoring->subject_id = $request->subject_id;
+        $teaching_mentoring->subject_id = $request->subject_id ?? 0;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
@@ -151,8 +151,8 @@ class TeachingMentoringController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
-            'subject_id' => 'required',
-            'title' => 'required',
+            'subject_id' => $request->category == 'Pengajaran' ? 'required' : 'nullable',
+            'title' => $request->category == 'Pembimbingan' ? 'required' : 'nullable',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
@@ -170,7 +170,7 @@ class TeachingMentoringController extends Controller
 
         $teaching_mentoring = new TeachingMentoring;
         $teaching_mentoring->user_id = $request->user_id;
-        $teaching_mentoring->subject_id = $request->subject_id;
+        $teaching_mentoring->subject_id = $request->subject_id ?? 0;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
@@ -207,8 +207,8 @@ class TeachingMentoringController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'category' => 'required',
-            'subject_id' => 'required',
-            'title' => 'required',
+            'subject_id' => $request->category == 'Pengajaran' ? 'required' : 'nullable',
+            'title' => $request->category == 'Pembimbingan' ? 'required' : 'nullable',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
@@ -225,7 +225,7 @@ class TeachingMentoringController extends Controller
         }
 
         $teaching_mentoring->user_id = $request->user_id;
-        $teaching_mentoring->subject_id = $request->subject_id;
+        $teaching_mentoring->subject_id = $request->subject_id ?? 0;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
