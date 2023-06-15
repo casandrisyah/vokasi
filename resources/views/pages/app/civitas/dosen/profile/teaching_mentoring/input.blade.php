@@ -54,6 +54,15 @@
                                 <label class="required fw-semibold fs-6 mb-2">Tahun</label>
                                 <input type="text" class="form-control form-control-solid number_only mb-3" name="year" id="year" value="{{$data->year}}">
                             </div>
+                            <div class="col-md-6">
+                                <label class="required fw-semibold fs-6 mb-2">Mata Kuliah</label>
+                                <select name="subject_id" id="subject_id" class="form-select form-select-solid">
+                                    <option disabled selected>Pilih Mata Kuliah</option>
+                                    @foreach ($subjects as $subject)
+                                        <option value="{{ $subject->id }}" {{ $data->subject_id == $subject->id ? 'selected' : '' }}>{{ $subject->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-md-12">
                                 <label class="fw-semibold fs-6 mb-2">Nama Mahasiswa</label>
                                 <input id="student_name" type="hidden" name="student_name" value="{{ $data->student_name }}">
@@ -77,6 +86,7 @@
     @section('custom_js')
         <script>
             obj_select("category");
+            obj_select("subject_id");
         </script>
     @endsection
 </x-office-layout>

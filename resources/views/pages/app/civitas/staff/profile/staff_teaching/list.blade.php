@@ -15,6 +15,7 @@
     </thead>
     <tbody class="fw-semibold text-gray-600">
         @foreach ($collection as $item)
+        {{-- @dd($item->subject) --}}
         <tr>
             <td>
                 <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -22,7 +23,7 @@
                 </div>
             </td>
             <td>{{ $item->year }}</td>
-            <td>{{ $item->subject }}</td>
+            <td>{{ $item->subject->name }}</td>
             <td>{{ $item->prodi }}</td>
             <td>
                 @if ($item->is_active == 1)

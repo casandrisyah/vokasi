@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Office;
 
 use App\Http\Controllers\Controller;
-use App\Models\Account\UserCategory;
+use App\Models\CategoryProdi;
 use Illuminate\Http\Request;
 use App\Models\Civitas\User as Dosen;
 use App\Models\Profil\Education;
@@ -18,7 +18,7 @@ class DosenProfileController extends Controller
     public function identitas_dosen()
     {
         $dosen = Dosen::where('id', Auth::user()->id)->first();
-        $category = UserCategory::where('role', 4)->where('is_active', 1)->get();
+        $category = CategoryProdi::where('is_active', 1)->get();
         return view('pages.app.dosen_profile.personal.input', ['data' => $dosen, 'category' => $category]);
     }
 

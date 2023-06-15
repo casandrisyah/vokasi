@@ -44,7 +44,7 @@
                                     <div>SINTA ID : {{ $dosen->sinta_id ?? '-' }}</div>
                                 </div>
                                 <div class="text-start text-muted mt-2 border-bottom-dashed pb-3 pt-2 px-2">
-                                    <i class="fa-solid fa-building-columns me-3"></i>  {{ $dosen->user_category->name ?? '-' }}
+                                    <i class="fa-solid fa-building-columns me-3"></i>  {{ $dosen->category_prodi->name ?? '-' }}
                                 </div>
                                 <div class="text-start text-muted mt-2 border-bottom-dashed pb-3 pt-2 px-2">
                                     <i class="fa-solid fa-phone me-3"></i>  {{ $dosen->phone ?? '-' }}
@@ -200,6 +200,7 @@
                                                     <div class="card-body">
                                                         <span class="text-uppercase fw-light" style="font-size: 12px">{{ $item->category }}</span>
                                                         <div class="fw-semibold" style="font-size: 17px; text-transform: capitalize">{{ $item->title }}</div>
+                                                        <div class="text-muted mt-0">{{ $item->subject->name }}</div>
                                                         <div class="text-muted">{!! $item->student_name ? 'Mahasiswa: ' . $item->student_name : '' !!}</div>
                                                         <div class="text-muted mt-1 fw-light">{{ $item->year }}</div>
                                                     </div>

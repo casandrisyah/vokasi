@@ -1,8 +1,8 @@
-<x-app-layout title="Dekan">
+<x-app-layout title="Mata Kuliah">
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 transition-fade">
         <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Dekan</h1>
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Mata Kuliah</h1>
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <li class="breadcrumb-item">
                         <a href="{{route('office.dashboard.index')}}" class="menu-link text-gray-800 text-hover-primary">Dashboard</a>
@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item">
                         <span class="bullet bg-gray-800 w-5px h-2px"></span>
                     </li>
-                    <li class="breadcrumb-item text-gray-800">Dekan</li>
+                    <li class="breadcrumb-item text-gray-800">Mata Kuliah</li>
                 </ul>
             </div>
         </div>
@@ -28,13 +28,13 @@
                                         <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
                                     </svg>
                                 </span>
-                                <input name="keyword" onkeyup="load_list();" type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Cari Dekan" />
+                                <input name="keyword" onkeyup="load_list();" type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Cari Dosen" />
                             </div>
                         </form>
                     </div> --}}
                     <div class="card-toolbar">
                         <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
-                            <a href="{{route('office.account.dekan.create')}}" class="menu-link btn btn-primary">Tambah Dekan</a>
+                            <a href="{{route('office.subject.create')}}" class="menu-link btn btn-primary">Tambah Mata Kuliah</a>
                         </div>
                         <div class="d-flex justify-content-end align-items-center d-none" data-kt-customer-table-toolbar="selected">
                             <div class="fw-bold me-5">
@@ -52,10 +52,6 @@
     @section('custom_js')
         <script>
             load_list(1);
-
-            $(document).ajaxComplete(function() {
-                initTooltips();
-            });
         </script>
     @endsection
 </x-app-layout>

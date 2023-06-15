@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CarouselSeeder::class,
             HomeMenuSeeder::class,
             UserSeeder::class,
+            SubjectSeeder::class,
         ]);
     }
 }

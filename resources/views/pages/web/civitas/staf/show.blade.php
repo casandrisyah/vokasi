@@ -155,7 +155,7 @@
                                             @foreach ($staff_teaching as $item)
                                                 <div class="card rounded-6 my-shadow border-0 mt-3 {{ $loop->last ? 'mb-3' : '' }}">
                                                     <div class="card-body">
-                                                        <div class="fw-semibold" style="font-size: 17px; text-transform: capitalize">{{ $item->subject }}</div>
+                                                        <div class="fw-semibold" style="font-size: 17px; text-transform: capitalize">{{ $item->subject->name }}</div>
                                                         <div class="text-muted">{{ $item->prodi }}</div>
                                                         <div class="text-muted mt-1 fw-light">{{ $item->year }}</div>
                                                     </div>

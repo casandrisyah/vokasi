@@ -5,6 +5,7 @@ namespace App\Models\Civitas;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Account\UserCategory;
+use App\Models\CategoryProdi;
 use App\Models\Profil\Education;
 use App\Models\Profil\Funding;
 use App\Models\Profil\Research;
@@ -60,6 +61,11 @@ class User extends Authenticatable
     public function user_category()
     {
         return $this->belongsTo(UserCategory::class, 'user_category_id');
+    }
+
+    public function category_prodi()
+    {
+        return $this->belongsTo(CategoryProdi::class, 'user_category_id');
     }
 
     public function education()

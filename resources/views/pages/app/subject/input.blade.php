@@ -1,8 +1,8 @@
-<x-app-layout title="{{$data->id ? 'Perbarui' : 'Tambah'}} Kategori KA Prodi">
+<x-app-layout title="{{$data->id ? 'Perbarui' : 'Tambah'}} Mata Kuliah">
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 transition-fade">
         <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Kategori KA Prodi</h1>
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Mata Kuliah</h1>
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <li class="breadcrumb-item">
                         <a href="{{route('office.dashboard.index')}}" class="menu-link text-gray-800 text-hover-primary">Dasbor</a>
@@ -11,7 +11,7 @@
                         <span class="bullet bg-gray-800 w-5px h-2px"></span>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{route('office.account.category-ka-prodi.index')}}" class="menu-link text-gray-800 text-hover-primary">Kategori KA Prodi</a>
+                        <a href="{{route('office.subject.index')}}" class="menu-link text-gray-800 text-hover-primary">Mata Kuliah</a>
                     </li>
                     <li class="breadcrumb-item">
                         <span class="bullet bg-gray-800 w-5px h-2px"></span>
@@ -25,21 +25,38 @@
     </div>
     <div id="kt_app_content" class="app-content flex-column-fluid transition-fade">
         <div id="kt_app_content_container" class="app-container container-fluid">
-            <form id="form_input" class="form" data-redirect-url="{{route('office.account.category-ka-prodi.index')}}" action="{{$data->id ? route('office.account.category-ka-prodi.update',$data->id) : route('office.account.category-ka-prodi.store')}}" method="{{$data->id ? 'PATCH' : 'POST'}}">
+            <form id="form_input" class="form" data-redirect-url="{{route('office.subject.index')}}" action="{{$data->id ? route('office.subject.update',$data->id) : route('office.subject.store')}}" method="{{$data->id ? 'PATCH' : 'POST'}}">
                 <div class="card mb-5">
                     <div class="card-body">
                         <div class="row mb-10">
                             <div class="col-md-6 mb-3">
-                                <label class="required fw-semibold fs-6 mb-2">Nama Kategori</label>
+                                <label class="required fw-semibold fs-6 mb-2">Nama Mata Kuliah</label>
                                 <input type="text" class="form-control form-control-solid" name="name" id="name" value="{{$data->name}}">
                             </div>
+                            <div class="col-md-6 col-lg-3 mb-3">
+                                <label class="required fw-semibold fs-6 mb-2">Kode Mata Kuliah</label>
+                                <input type="text" class="form-control form-control-solid" name="code" id="code" value="{{$data->code}}">
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-3">
+                                <label class="required fw-semibold fs-6 mb-2">SKS</label>
+                                <input type="text" class="form-control form-control-solid" name="sks" id="sks" value="{{$data->sks}}">
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label class="required fw-semibold fs-6 mb-2">Slug Kategori</label>
-                                <input type="text" class="form-control form-control-solid" name="slug" id="slug" value="{{$data->slug}}">
+                                <label class="fw-semibold fs-6 mb-2">Semester ke</label>
+                                <input type="text" class="form-control form-control-solid" name="semester" value="{{$data->semester}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-semibold fs-6 mb-2">Program Studi</label>
+                                <select name="prodi" id="category" class="form-select form-select-solid">
+                                    <option disabled selected>Pilih Program Studi</option>
+                                    @foreach ($prodi as $item)
+                                        <option value="{{$item->name}}" {{$data->prodi == $item->name ? 'selected' : ''}}>{{$item->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="text-center pt-15">
-                            <a href="{{route('office.account.category-ka-prodi.index')}}" class="menu-link btn btn-light me-3">Batal</a>
+                            <a href="{{route('office.subject.index')}}" class="menu-link btn btn-light me-3">Batal</a>
                             <button id="tombol_simpan" onclick="handle_post('#tombol_simpan','#form_input');" class="btn btn-primary">
                                 <span class="indicator-label">Simpan</span>
                                 <span class="indicator-progress">Harap tunggu...
@@ -54,6 +71,8 @@
 
     @section('custom_js')
     <script>
+        obj_select('category');
+
         if ($("#name").length > 0 && $("#slug").length > 0) {
             $("#name").on("input", function() {
                 $("#slug").val($(this).val().toLowerCase()

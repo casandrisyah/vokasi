@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>Program Studi</td>
                                         <td>:</td>
-                                        <td>{{ $data->user_category ? $data->user_category->name : '-' }}</td>
+                                        <td>{{ $data->category_prodi ? $data->category_prodi->name : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Fakultas</td>

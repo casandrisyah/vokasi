@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Civitas\User as Dosen;
 use App\Models\Profil\TeachingMentoring;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,17 +23,20 @@ class TeachingMentoringController extends Controller
 
     public function create(Dosen $dosen)
     {
-        return view('pages.app.civitas.dosen.profile.teaching_mentoring.input', ['data' => new TeachingMentoring, 'dosen' => $dosen]);
+        $subjects = Subject::where('is_active', 1)->get();
+        return view('pages.app.civitas.dosen.profile.teaching_mentoring.input', ['data' => new TeachingMentoring, 'dosen' => $dosen, 'subjects' => $subjects]);
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
+            'subject_id' => 'required',
             'title' => 'required',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
+            'subject_id.required' => 'Mata kuliah harus diisi',
             'title.required' => 'Judul harus diisi',
             'year.required' => 'Tahun harus diisi',
         ]);
@@ -46,6 +50,7 @@ class TeachingMentoringController extends Controller
 
         $teaching_mentoring = new TeachingMentoring;
         $teaching_mentoring->user_id = $request->user_id;
+        $teaching_mentoring->subject_id = $request->subject_id;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
@@ -65,7 +70,8 @@ class TeachingMentoringController extends Controller
 
     public function edit(Dosen $dosen, TeachingMentoring $teaching_mentoring)
     {
-        return view('pages.app.civitas.dosen.profile.teaching_mentoring.input', ['data' => $teaching_mentoring, 'dosen' => $dosen]);
+        $subjects = Subject::where('is_active', 1)->get();
+        return view('pages.app.civitas.dosen.profile.teaching_mentoring.input', ['data' => $teaching_mentoring, 'dosen' => $dosen, 'subjects' => $subjects]);
     }
 
     public function update(Request $request, TeachingMentoring $teaching_mentoring)
@@ -84,10 +90,12 @@ class TeachingMentoringController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'category' => 'required',
+            'subject_id' => 'required',
             'title' => 'required',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
+            'subject_id.required' => 'Mata kuliah harus diisi',
             'title.required' => 'Judul harus diisi',
             'year.required' => 'Tahun harus diisi',
         ]);
@@ -100,6 +108,7 @@ class TeachingMentoringController extends Controller
         }
 
         $teaching_mentoring->user_id = $request->user_id;
+        $teaching_mentoring->subject_id = $request->subject_id;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
@@ -134,17 +143,20 @@ class TeachingMentoringController extends Controller
     public function create_teaching_mentoring()
     {
         $dosen = Dosen::where('id', Auth::user()->id)->first();
-        return view('pages.app.dosen_profile.teaching_mentoring.input', ['data' => new TeachingMentoring, 'dosen' => $dosen]);
+        $subjects = Subject::where('is_active', 1)->get();
+        return view('pages.app.dosen_profile.teaching_mentoring.input', ['data' => new TeachingMentoring, 'dosen' => $dosen, 'subjects' => $subjects]);
     }
 
     public function store_teaching_mentoring(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
+            'subject_id' => 'required',
             'title' => 'required',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
+            'subject_id.required' => 'Mata kuliah harus diisi',
             'title.required' => 'Judul harus diisi',
             'year.required' => 'Tahun harus diisi',
         ]);
@@ -158,6 +170,7 @@ class TeachingMentoringController extends Controller
 
         $teaching_mentoring = new TeachingMentoring;
         $teaching_mentoring->user_id = $request->user_id;
+        $teaching_mentoring->subject_id = $request->subject_id;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;
@@ -174,7 +187,8 @@ class TeachingMentoringController extends Controller
     public function edit_teaching_mentoring(TeachingMentoring $teaching_mentoring)
     {
         $dosen = Dosen::where('id', Auth::user()->id)->first();
-        return view('pages.app.dosen_profile.teaching_mentoring.input', ['data' => $teaching_mentoring, 'dosen' => $dosen]);
+        $subjects = Subject::where('is_active', 1)->get();
+        return view('pages.app.dosen_profile.teaching_mentoring.input', ['data' => $teaching_mentoring, 'dosen' => $dosen, 'subjects' => $subjects]);
     }
 
     public function update_teaching_mentoring(Request $request, TeachingMentoring $teaching_mentoring)
@@ -193,10 +207,12 @@ class TeachingMentoringController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'category' => 'required',
+            'subject_id' => 'required',
             'title' => 'required',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
+            'subject_id.required' => 'Mata kuliah harus diisi',
             'title.required' => 'Judul harus diisi',
             'year.required' => 'Tahun harus diisi',
         ]);
@@ -209,6 +225,7 @@ class TeachingMentoringController extends Controller
         }
 
         $teaching_mentoring->user_id = $request->user_id;
+        $teaching_mentoring->subject_id = $request->subject_id;
         $teaching_mentoring->category = $request->category;
         $teaching_mentoring->title = $request->title;
         $teaching_mentoring->student_name = $request->student_name;

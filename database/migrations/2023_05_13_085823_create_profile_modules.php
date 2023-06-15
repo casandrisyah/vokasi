@@ -36,6 +36,7 @@ return new class extends Migration
         Schema::create('teaching_mentorings', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->default(0);
+            $table->integer('subject_id')->default(0);
             $table->longText('category');
             $table->longText('title');
             $table->longText('student_name')->nullable();
@@ -46,8 +47,8 @@ return new class extends Migration
         Schema::create('staff_teachings', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->default(0);
+            $table->integer('subject_id')->default(0);
             $table->year('year')->nullable();
-            $table->longText('subject')->nullable();
             $table->longText('prodi')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();

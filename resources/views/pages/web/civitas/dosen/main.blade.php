@@ -73,7 +73,7 @@
                                    <img src="{{ $item->avatar ? Storage::url($item->avatar) : asset('web/images/no-img-profile.jpg') }}" alt="{{ $item->name }}" class="card-img">
                                    <div class="team-title">
                                        <h5 class="mb-0">{{ $item->name }}</h5>
-                                       <span>{{ $item->user_category ? $item->user_category->name : '' }}</span>
+                                       <span>{{ $item->category_prodi ? $item->category_prodi->name : '' }}</span>
                                    </div>
                                </div>
                            </a>

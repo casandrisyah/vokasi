@@ -111,7 +111,7 @@ return new class extends Migration
         DB::table('users')->insert([
             ['user_category_id' => null, 'name' => 'Administrator', 'email' => 'demo@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '1', 'created_at' => now(), 'updated_at' => now()],
             ['user_category_id' => null, 'name' => 'Dekan', 'email' => 'demo@dekan.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '2', 'created_at' => now(), 'updated_at' => now()],
-            ['user_category_id' => 4, 'name' => 'Dosen', 'email' => 'demo@dosen.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '4', 'created_at' => now(), 'updated_at' => now()],
+            ['user_category_id' => 1, 'name' => 'Dosen', 'email' => 'demo@dosen.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '4', 'created_at' => now(), 'updated_at' => now()],
             ['user_category_id' => 7, 'name' => 'Staf', 'email' => 'demo@staf.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '5', 'created_at' => now(), 'updated_at' => now()],
             ['user_category_id' => 9, 'name' => 'Himatek', 'email' => 'demo@himatek.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '6', 'created_at' => now(), 'updated_at' => now()],
             ['user_category_id' => 10, 'name' => 'Himatif', 'email' => 'demo@himatif.com', 'email_verified_at' => now(), 'password' => Hash::make('password'), 'role' => '6', 'created_at' => now(), 'updated_at' => now()],

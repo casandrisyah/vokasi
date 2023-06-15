@@ -248,12 +248,6 @@
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link {{request()->is(Str::lower('office/civitas/category-dosen*')) ? 'active' : ''}}" href="{{route('office.civitas.category-dosen.index')}}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
-                                                        <span class="menu-title">Kategori</span>
-                                                    </a>
                                                     <a class="menu-link {{request()->is(Str::lower('office/civitas/dosen*')) ? 'active' : ''}}" href="{{route('office.civitas.dosen.index')}}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
@@ -438,6 +432,18 @@
                             <i class="ki-outline ki-message-text-2"></i>
                         </span>
                         <span class="menu-title">Komentar</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link {{request()->is(Str::lower('office/subject')) || request()->is(Str::lower('office/subject').'/*') ? 'active' : ''}}" href="{{route('office.subject.index')}}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-abstract-26"></i>
+                        </span>
+                        <span class="menu-title">Mata Kuliah</span>
                     </a>
                     <!--end:Menu link-->
                 </div>

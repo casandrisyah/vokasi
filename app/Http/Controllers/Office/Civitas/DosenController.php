@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Office\Civitas;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Account\UserCategory;
+use App\Models\CategoryProdi;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Civitas\User AS Dosen;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +23,7 @@ class DosenController extends Controller
 
     public function create()
     {
-        $category = UserCategory::where('role', 4)->where('is_active', 1)->get();
+        $category = CategoryProdi::where('is_active', 1)->get();
         return view('pages.app.civitas.dosen.input', ['data' => new Dosen, 'category' => $category]);
     }
 
@@ -70,7 +70,7 @@ class DosenController extends Controller
 
     public function edit(Dosen $dosen)
     {
-        $category = UserCategory::where('role', 4)->where('is_active', 1)->get();
+        $category = CategoryProdi::where('is_active', 1)->get();
         return view('pages.app.civitas.dosen.input', ['data' => $dosen, 'category' => $category]);
     }
 
@@ -211,7 +211,7 @@ class DosenController extends Controller
 
     public function personal(Dosen $dosen)
     {
-        $category = UserCategory::where('role', 4)->where('is_active', 1)->get();
+        $category = CategoryProdi::where('is_active', 1)->get();
         return view('pages.app.civitas.dosen.profile.personal.input', ['data' => $dosen, 'category' => $category]);
     }
 

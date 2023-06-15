@@ -22,7 +22,7 @@
                 </div>
             </td>
             <td>{{ $item->year }}</td>
-            <td>{{ $item->subject }}</td>
+            <td>{{ $item->subject->name }}</td>
             <td>{{ $item->prodi }}</td>
             <td>
                 @if ($item->is_active == 1)

@@ -51,6 +51,16 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->id();
+            $table->longText('prodi')->nullable();
+            $table->longText('semester')->nullable();
+            $table->longText('name');
+            $table->longText('code');
+            $table->integer('sks');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -63,5 +73,6 @@ return new class extends Migration
         Schema::dropIfExists('logos');
         Schema::dropIfExists('web_footers');
         Schema::dropIfExists('pak_simulations');
+        Schema::dropIfExists('subjects');
     }
 };

@@ -37,6 +37,7 @@ use App\Http\Controllers\Office\ProgramStudiController;
 use App\Http\Controllers\Office\Setting\LogoController;
 use App\Http\Controllers\Office\Setting\RoleController;
 use App\Http\Controllers\Office\StaffProfileController;
+use App\Http\Controllers\Office\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -224,6 +225,7 @@ Route::group(['domain' => ''], function () {
                 Route::get('logo', [LogoController::class, 'index'])->name('logo.index');
                 Route::patch('logo/update', [LogoController::class, 'update'])->name('logo.update');
             });
+            Route::resource('subject', SubjectController::class)->middleware('frole:1');
             Route::get('pak-simulation', [PAKSimulationController::class, 'index'])->name('pak-simulation.index');
             Route::patch('pak-simulation/update', [PAKSimulationController::class, 'update'])->name('pak-simulation.update');
             Route::resource('category-prodi', CategoryProdiController::class)->middleware('frole:1');
