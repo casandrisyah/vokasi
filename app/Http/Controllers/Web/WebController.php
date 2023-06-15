@@ -152,17 +152,17 @@ class WebController extends Controller
         if (request()->urutkan) {
             if (request()->urutkan == 'dosen_d3_tk') {
                 $urutkan = 'D-III Teknologi Komputer';
-                $dosen = $dosen->whereHas('user_category', function ($q) use ($urutkan) {
+                $dosen = $dosen->whereHas('category_prodi', function ($q) use ($urutkan) {
                     $q->where('name', $urutkan);
                 });
             } else if (request()->urutkan == 'dosen_d3_ti') {
                 $urutkan = 'D-III Teknologi Informasi';
-                $dosen = $dosen->whereHas('user_category', function ($q) use ($urutkan) {
+                $dosen = $dosen->whereHas('category_prodi', function ($q) use ($urutkan) {
                     $q->where('name', $urutkan);
                 });
             } else if (request()->urutkan == 'dosen_trpl') {
                 $urutkan = 'Sarjana Terapan Teknologi Rekayasa Perangkat Lunak';
-                $dosen = $dosen->whereHas('user_category', function ($q) use ($urutkan) {
+                $dosen = $dosen->whereHas('category_prodi', function ($q) use ($urutkan) {
                     $q->where('name', $urutkan);
                 });
             }
