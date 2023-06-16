@@ -45,6 +45,7 @@
                                     <h5 class="fw-semibold">Pada Halaman ini HIMATEK Dapat Melakukan:</h4>
                                     <ol class="fw-semibold">
                                         <li>Melihat, Menambahkan, Mengedit, Menghapus aktivitas mahasiswa yang berkategori HIMATEK</li>
+                                        <li><a href="{{ route('office.himatek.change-password.index') }}" class="menu-link">Mengubah Password</a> akun miliknya</li>
                                     </ol>
                                 </div>
                             </div>

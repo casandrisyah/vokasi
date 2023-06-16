@@ -37,7 +37,13 @@
             opacity: 0;
             transform: translateY(-10px);
         }
-
+        .div-cover {
+            opacity: 1;
+            transition-duration: 0.3s;
+        }
+        html.is-animating .div-cover {
+            opacity: 0;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">

@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\Web\AuthController;
@@ -20,10 +21,14 @@ Route::group(['domain' => ''], function () {
         return redirect()->route('web.home');
     });
     Route::prefix('')->name('web.')->group(function () {
-        Route::prefix('auth')->name('auth.')->group(function () {
+        Route::prefix('auth')->name('auth.')->middleware('guest')->group(function () {
             Route::get('', [AuthController::class, 'login'])->name('index');
             Route::post('authenticate', [AuthController::class, 'do_login'])->name('login');
             Route::get('logout', [AuthController::class, 'do_logout'])->name('logout');
+            Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
+            Route::post('forgot', [AuthController::class, 'do_forgot'])->name('do_forgot');
+            Route::get('reset/{token}', [AuthController::class, 'reset'])->name('reset');
+            Route::post('reset', [AuthController::class, 'do_reset'])->name('do_reset');
         });
         Route::get('home', [WebController::class, 'index'])->name('home');
         Route::get('tentang-kami', [WebController::class, 'about'])->name('tentang');

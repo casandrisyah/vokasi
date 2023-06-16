@@ -62,3 +62,43 @@ function handle_is_active(method, route, tombol, data) {
         }
     });
 }
+
+function handle_post_noswup(tombol, form) {
+    $(document).one("submit", form, (e) => {
+        // loading();
+        let lang = localStorage.getItem("cms_lang");
+        const data = new FormData(e.target);
+        data.append("_method", $(form).attr("method"),);
+        $(tombol).prop("disabled", true);
+        $(tombol).attr("data-kt-indicator","on");
+        $.ajax({
+            type: "POST",
+            url: $(form).attr("action"),
+            data: data,
+            enctype: "multipart/form-data",
+            cache: false,
+            contentType: false,
+            resetForm: true,
+            processData: false,
+            dataType: "json",
+            beforeSend: () => {},
+            success: (response) => {
+                toast.show();
+                $(tombol).prop("disabled", false);
+                $(tombol).removeAttr("data-kt-indicator");
+                // loaded();
+                if (response.alert === "success") {
+                    let message = response.message;
+                    $("#toast_body").html(message);
+                    setTimeout(() => {
+                       window.location.href = $(form).data("redirect-url");
+                    }, 3000);
+                }else{
+                    let messages = response.message;
+                    $("#toast_body").html(messages);
+                }
+            },
+        });
+        return false;
+    });
+}

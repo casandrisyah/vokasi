@@ -107,6 +107,48 @@ const handle_post = (tombol, form) => {
     });
 };
 
+const handle_post_two = (tombol, form) => {
+    $(document).one("submit", form, (e) => {
+        // loading();
+        let lang = localStorage.getItem("cms_lang");
+        const data = new FormData(e.target);
+        data.append("_method", $(form).attr("method"),);
+        $(tombol).prop("disabled", true);
+        $(tombol).attr("data-kt-indicator","on");
+        $.ajax({
+            type: "POST",
+            url: $(form).attr("action"),
+            data: data,
+            enctype: "multipart/form-data",
+            cache: false,
+            contentType: false,
+            resetForm: true,
+            processData: false,
+            dataType: "json",
+            beforeSend: () => {},
+            success: (response) => {
+                toast.show();
+                $(tombol).prop("disabled", false);
+                $(tombol).removeAttr("data-kt-indicator");
+                // loaded();
+                if (response.alert === "success") {
+                    let message = response.message;
+                    $("#toast_body").html(message);
+                    setTimeout(() => {
+                        swup.loadPage({
+                            url: $(form).data("redirect-url"), // route of request (defaults to current url)
+                        });
+                    }, 1000);
+                }else{
+                    let messages = response.message;
+                    $("#toast_body").html(messages);
+                }
+            },
+        });
+        return false;
+    });
+};
+
 const options = {
     containers: ['#cms_app'],
     doScrollingRightAway: true,

@@ -647,6 +647,18 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
+                    <a href="{{ route('office.himatek.change-password.index') }}" class="menu-link {{request()->is(Str::lower('office/himatek/change-password*')) ? 'active' : ''}}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-lock-2"></i>
+                        </span>
+                        <span class="menu-title">Ubah Password</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
                     <a href="{{ route('office.himatek.activity.index') }}" class="menu-link {{request()->is(Str::lower('office/himatek/activity*')) ? 'active' : ''}}">
                         <span class="menu-icon">
                             <i class="ki-outline ki-picture"></i>
@@ -660,6 +672,18 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
+                    <a href="{{ route('office.himatif.change-password.index') }}" class="menu-link {{request()->is(Str::lower('office/himatif/change-password*')) ? 'active' : ''}}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-lock-2"></i>
+                        </span>
+                        <span class="menu-title">Ubah Password</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
                     <a href="{{ route('office.himatif.activity.index') }}" class="menu-link {{request()->is(Str::lower('office/himatif/activity*')) ? 'active' : ''}}">
                         <span class="menu-icon">
                             <i class="ki-outline ki-picture"></i>
@@ -670,6 +694,18 @@
                 </div>
                 <!--end:Menu item-->
                 @elseif (auth()->user()->user_category->slug == 'himatera')
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a href="{{ route('office.himatera.change-password.index') }}" class="menu-link {{request()->is(Str::lower('office/himatera/change-password*')) ? 'active' : ''}}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-lock-2"></i>
+                        </span>
+                        <span class="menu-title">Ubah Password</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->

@@ -9,7 +9,10 @@ use App\Models\Civitas\User as Dosen;
 use App\Models\Profil\Education;
 use App\Models\Profil\Funding;
 use App\Models\Profil\Research;
+use App\Notifications\PasswordResetedNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -70,6 +73,60 @@ class DosenProfileController extends Controller
             'alert' => 'success',
             'message' => 'Data berhasil diperbaharui',
         ], 200);
+    }
+
+    public function change_password()
+    {
+        $dosen = Dosen::where('id', Auth::user()->id)->first();
+        return view('pages.app.dosen_profile.change_password.input', ['dosen' => $dosen]);
+    }
+
+    public function update_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:8',
+            'password_confirmation' => 'required|min:8',
+        ],[
+            'old_password.required' => 'Password lama tidak boleh kosong',
+            'new_password.required' => 'Password baru tidak boleh kosong',
+            'new_password.min' => 'Password baru minimal 8 karakter',
+            'password_confirmation.required' => 'Konfirmasi password tidak boleh kosong',
+            'password_confirmation.min' => 'Konfirmasi password minimal 8 karakter',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => $validator->errors()->first(),
+            ], 200);
+        }
+
+        $dosen = Dosen::where('id', Auth::user()->id)->first();
+        if (!Hash::check($request->old_password, $dosen->password)) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => 'Password lama tidak sesuai',
+            ], 200);
+        }
+        if ($request->new_password != $request->password_confirmation) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => 'Password baru tidak sama dan konfirmasi password tidak sama',
+            ], 200);
+        }
+        $dosen->password = Hash::make($request->new_password);
+        $dosen->update();
+        $data = [
+            'message' => 'Password berhasil diubah. Silahkan login dengan password baru Anda',
+        ];
+        session()->flash('session_data', $data);
+        Notification::send($dosen, new PasswordResetedNotification($dosen));
+        Auth::logout();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Password berhasil diubah.',
+        ]);
     }
 
     public function about()

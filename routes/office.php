@@ -9,6 +9,7 @@ use App\Http\Controllers\Office\Timeline\NewsController;
 use App\Http\Controllers\Office\Timeline\ActivityController;
 use App\Http\Controllers\Office\About\OrganizationController;
 use App\Http\Controllers\Office\Account\DekanController;
+use App\Http\Controllers\Office\Account\HimateraController;
 use App\Http\Controllers\Office\Account\HimpunanCategoryController;
 use App\Http\Controllers\Office\Account\HimpunanController;
 use App\Http\Controllers\Office\Account\KAProdiCategoryController;
@@ -55,9 +56,9 @@ Route::group(['domain' => ''], function () {
             return redirect()->route('office.dashboard.index');
         });
         Route::prefix('auth')->name('auth.')->middleware('guest')->group(function () {
-            Route::view('', 'pages.app.auth.login')->name('index');
-            Route::view('forgot', 'pages.app.auth.forgot')->name('forgot');
-            Route::get('reset/{token}', fn($token) => view('pages.profile.overview', compact('token')))->name('reset');
+            Route::get('', [AuthController::class, 'index'])->name('index');
+            Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
+            Route::get('reset/{token}', fn($token) => view('pages.app.auth.reset', compact('token')))->name('reset');
             Route::post('authenticate',[AuthController::class, 'do_login'])->name('login');
 
             Route::post('forgot-password',[AuthController::class, 'do_forgot'])->name('doforgot');
@@ -74,6 +75,9 @@ Route::group(['domain' => ''], function () {
                 Route::patch('identitas/update', [DosenProfileController::class, 'update_identitas_dosen'])->name('identitas.update');
                 Route::get('about', [DosenProfileController::class, 'about'])->name('about.index');
                 Route::patch('about/update', [DosenProfileController::class, 'update_about'])->name('about.update');
+
+                Route::get('change-password', [DosenProfileController::class, 'change_password'])->name('change-password.index');
+                Route::patch('change-password/update', [DosenProfileController::class, 'update_password'])->name('change-password.update');
 
                 Route::get('pendidikan', [DosenProfileController::class, 'pendidikan'])->name('pendidikan.index');
                 Route::get('pendidikan/create', [DosenProfileController::class, 'create_pendidikan'])->name('pendidikan.create');
@@ -107,6 +111,9 @@ Route::group(['domain' => ''], function () {
                 Route::get('identitas', [StaffProfileController::class, 'identitas_staff'])->name('identitas.index');
                 Route::patch('identitas/update', [StaffProfileController::class, 'update_identitas_staff'])->name('identitas.update');
 
+                Route::get('change-password', [StaffProfileController::class, 'change_password'])->name('change-password.index');
+                Route::patch('change-password/update', [StaffProfileController::class, 'update_password'])->name('change-password.update');
+
                 Route::get('tentang', [StaffProfileController::class, 'tentang_staff'])->name('tentang.index');
                 Route::patch('tentang/update', [StaffProfileController::class, 'update_tentang_staff'])->name('tentang.update');
 
@@ -126,12 +133,18 @@ Route::group(['domain' => ''], function () {
             });
             Route::prefix('himatek')->name('himatek.')->middleware('frole:6')->group(function () {
                 Route::resource('activity', OfficeHimatekController::class);
+                Route::get('change-password', [OfficeHimatekController::class, 'change_password'])->name('change-password.index');
+                Route::patch('change-password/update', [OfficeHimatekController::class, 'update_password'])->name('change-password.update');
             });
             Route::prefix('himatif')->name('himatif.')->middleware('frole:6')->group(function () {
                 Route::resource('activity', OfficeHimatifController::class);
+                Route::get('change-password', [OfficeHimatifController::class, 'change_password'])->name('change-password.index');
+                Route::patch('change-password/update', [OfficeHimatifController::class, 'update_password'])->name('change-password.update');
             });
             Route::prefix('himatera')->name('himatera.')->middleware('frole:6')->group(function () {
                 Route::resource('activity', OfficeHimateraController::class);
+                Route::get('change-password', [OfficeHimateraController::class, 'change_password'])->name('change-password.index');
+                Route::patch('change-password/update', [OfficeHimateraController::class, 'update_password'])->name('change-password.update');
             });
             Route::prefix('about')->name('about.')->middleware('frole:1')->group(function () {
                 Route::resource('vision', VisionController::class);

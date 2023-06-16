@@ -54,6 +54,7 @@
                             </div>
                             {{-- make the position of the button to be at the very bottom  --}}
                             <div class="d-flex justify-content-end">
+                                <a href="{{ route('office.staff.change-password.index') }}" class="menu-link btn btn-primary me-3">Ubah Password</a>
                                 <a href="{{ route('office.staff.identitas.index') }}" class="menu-link btn btn-primary">Edit Data</a>
                             </div>
                         </div>

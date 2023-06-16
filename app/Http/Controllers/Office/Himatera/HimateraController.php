@@ -6,7 +6,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Timeline\Activity;
 use App\Http\Controllers\Controller;
+use App\Models\Civitas\User;
+use App\Notifications\Web\PasswordResetedNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -127,6 +131,60 @@ class HimateraController extends Controller
         return response()->json([
             'alert' => 'success',
             'message' => 'Data berhasil dihapus',
+        ]);
+    }
+
+    public function change_password()
+    {
+        $himatera = User::where('id', Auth::user()->id)->first();
+        return view('pages.app.himatera.change_password.input', ['himatera' => $himatera]);
+    }
+
+    public function update_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:8',
+            'password_confirmation' => 'required|min:8',
+        ],[
+            'old_password.required' => 'Password lama tidak boleh kosong',
+            'new_password.required' => 'Password baru tidak boleh kosong',
+            'new_password.min' => 'Password baru minimal 8 karakter',
+            'password_confirmation.required' => 'Konfirmasi password tidak boleh kosong',
+            'password_confirmation.min' => 'Konfirmasi password minimal 8 karakter',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => $validator->errors()->first(),
+            ], 200);
+        }
+
+        $himatera = User::where('id', Auth::user()->id)->first();
+        if (!Hash::check($request->old_password, $himatera->password)) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => 'Password lama tidak sesuai',
+            ], 200);
+        }
+        if ($request->new_password != $request->password_confirmation) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => 'Password baru tidak sama dan konfirmasi password tidak sama',
+            ], 200);
+        }
+        $himatera->password = Hash::make($request->new_password);
+        $himatera->update();
+        $data = [
+            'message' => 'Password berhasil diubah. Silahkan login dengan password baru Anda',
+        ];
+        session()->flash('session_data', $data);
+        Notification::send($himatera, new PasswordResetedNotification($himatera));
+        Auth::logout();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Password berhasil diubah.',
         ]);
     }
 }

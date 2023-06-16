@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Web;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,7 +42,7 @@ class PasswordResetedNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Password Anda Telah Diubah')
-            ->view('pages.app.auth.reseted_notif',compact('notifiable'));
+            ->view('pages.web.auth.reseted_notif',compact('notifiable'));
     }
 
     /**

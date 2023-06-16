@@ -10,7 +10,7 @@ $logo = \App\Models\Setting\Config::where('key','APP_LOGO')->first();
     <body class="stretched">
         <div id="wrapper" class="cms_web">
 
-            @if (!request()->is('auth'))
+            @if (!request()->is('auth*'))
                 <!-- Header ============================================= -->
                 @include('themes.web.header')
                 <!-- #header end -->
@@ -25,7 +25,7 @@ $logo = \App\Models\Setting\Config::where('key','APP_LOGO')->first();
                 {{$slot}}
             </div>
             <!-- #content end -->
-            @if (!request()->is('auth'))
+            @if (!request()->is('auth*'))
                 <!-- Footer ============================================= -->
                 @include('themes.web.footer')
                 <!-- #footer end -->
