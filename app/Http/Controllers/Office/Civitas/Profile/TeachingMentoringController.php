@@ -32,7 +32,7 @@ class TeachingMentoringController extends Controller
         $validator = Validator::make($request->all(), [
             'category' => 'required',
             'subject_id' => $request->category == 'Pengajaran' ? 'required' : 'nullable',
-            'title' => $request->category == 'Pembimbingan' ? 'required' : 'nullable',
+            'title' => 'nullable',
             'year' => 'required',
         ],[
             'category.required' => 'Kategori harus diisi',
