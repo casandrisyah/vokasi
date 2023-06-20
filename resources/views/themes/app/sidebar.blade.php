@@ -480,6 +480,16 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a href="{{ route('office.pa-ta-kp-management.index') }}" class="menu-link {{request()->is('office/pa-ta-kp-management/*') ? 'active' : ''}}">
+                        <span class="menu-icon" data-kt-element="icon">
+                            <i class="ki-outline ki-exit-right-corner"></i>
+                        </span>
+                        <span class="menu-title">Manajemen PA/TA/KP</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
                 <!--end:Menu link-->
                 @elseif (auth()->user()->role == '4')
                  <!--begin:Menu item-->
@@ -572,6 +582,19 @@
                             <i class="ki-outline ki-exit-right-corner"></i>
                         </span>
                         <span class="menu-title">Link Pengerjaan PAK</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <div class="menu-item">
+                    @php
+                        $pak = \App\Models\PA_TA_KP_Manajemen::where('is_active', true)->first();
+                    @endphp
+                    <!--begin:Menu link-->
+                    <a href="{{ $pak->url ?? '#' }}" class="menu-link {{request()->is('office/pa_ta_kp_manajemen/*') ? 'active' : ''}}">
+                        <span class="menu-icon" data-kt-element="icon">
+                            <i class="ki-outline ki-exit-right-corner"></i>
+                        </span>
+                        <span class="menu-title">Manajemen PA/TA/KP</span>
                     </a>
                     <!--end:Menu link-->
                 </div>

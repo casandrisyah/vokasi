@@ -1,4 +1,4 @@
-<x-app-layout title="Link Pengerjaan PAK">
+<x-app-layout title="Manajemen PA/TA/KP">
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 transition-fade">
         <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
@@ -14,14 +14,14 @@
                     <li class="breadcrumb-item">
                         <span class="bullet bg-gray-800 w-5px h-2px"></span>
                     </li>
-                    <li class="breadcrumb-item text-gray-800">Link Pengerjaan PAK</li>
+                    <li class="breadcrumb-item text-gray-800">Manajemen PA/TA/KP</li>
                 </ul>
             </div>
         </div>
     </div>
     <div id="kt_app_content" class="app-content flex-column-fluid transition-fade">
         <div id="kt_app_content_container" class="app-container container-fluid">
-        <form id="form_input" class="form" data-redirect-url="{{route('office.pak-simulation.index')}}" action="{{route('office.pak-simulation.update')}}" method="PATCH">
+        <form id="form_input" class="form" data-redirect-url="{{route('office.pa-ta-kp-management.index')}}" action="{{route('office.pa-ta-kp-management.update')}}" method="PATCH">
                 <div class="card mb-5">
                     <div class="card-body">
                         <div class="row mb-5">
@@ -53,3 +53,4 @@
         </div>
     </div>
 </x-office-layout>
+

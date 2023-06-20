@@ -51,6 +51,12 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
+        Schema::create('pa_ta_kp_manajemen', function (Blueprint $table) {
+            $table->id();
+            $table->longText('url')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->longText('prodi')->nullable();

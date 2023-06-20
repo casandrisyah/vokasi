@@ -34,6 +34,7 @@ use App\Http\Controllers\Office\Himatif\HimatifController as OfficeHimatifContro
 use App\Http\Controllers\Office\Himatera\HimateraController as OfficeHimateraController;
 use App\Http\Controllers\Office\MainController;
 use App\Http\Controllers\Office\PAKSimulationController;
+use App\Http\Controllers\Office\PA_TA_KP_ManajemenController;
 use App\Http\Controllers\Office\ProgramStudiController;
 use App\Http\Controllers\Office\Setting\LogoController;
 use App\Http\Controllers\Office\Setting\RoleController;
@@ -245,6 +246,8 @@ Route::group(['domain' => ''], function () {
             Route::resource('comment', CommentController::class)->middleware('frole:1');
             Route::resource('program-studi', ProgramStudiController::class)->middleware('frole:1');
             Route::get('logout', [AuthController::class, 'do_logout'])->name('auth.logout');
+            Route::get('pa-ta-kp-management', [PA_TA_KP_ManajemenController::class, 'index'])->name('pa-ta-kp-management.index');
+            Route::patch('pa-ta-kp-management/update', [PA_TA_KP_ManajemenController::class, 'update'])->name('pa-ta-kp-management.update');
         });
     });
 });
