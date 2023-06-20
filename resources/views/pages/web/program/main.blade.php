@@ -32,7 +32,7 @@
             <div class="container">
                 <div id="section-features" class=" page-section">
                     <div style="border-top:3px; padding-top: 30px">
-                        <h3 style="color: white"><b>Visi dan Misi D3 - Teknologi Informasi</b></h3>
+                        <h3 style="color: white"><b>Visi dan Misi</b></h3>
                     </div>
 
                     <hr class="col-4" style="margin-top: -20px; padding: 1px; border-top: 5px solid; color:#EE771D">
